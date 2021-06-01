@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Book Shop</title>
+</head>
+
+<body onload="onInit()">
+    <header>
+    </header>
+    <main>
+        <div class="main-content">
+
+            <div class="title">
+                <h1>Aviv's Book Shop</h1>
+            </div>
+            <div class="add-book">
+                <a class="add-book" onclick="onAddBook()">Create new book</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td class="id-head"><span class="hash">#</span><b>ID</b></td>
+                        <td onclick="onSetSort()" class="title-head"><b>Title</b></td>
+                        <td onclick="onSetSort()" class="price-head"><b>Price</b></td>
+                        <td class="actions-head" colspan="3"><b>Actions</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <nav>
+        </nav>
+    </main>
+    <div class="pages">
+        <button onclick="onNextPage('-1')">&lt;&lt;</button>
+        <div class="pages-"></div>btns
+        <button onclick="onNextPage('1')">&gt;&gt;</button>
+    </div>
+    <footer></footer>
+
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/util-service.js"></script>
+    <script src="js/services/book-service.js"></script>
+    <script src="js/book-controller.js"></script>
+</body>
+
+</html>
