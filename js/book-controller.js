@@ -2,18 +2,20 @@
 function onInit() {
     renderBooks()
     onCloseReadBook()
+    renderPageNum()
 }
 
 function renderBooks() {
     var books = getBooks();
     var strHtmls = books.map(function (book) {
+        var price = formatCurrency(ilsToX(book.price, gCurrLang))
         return `<tr>
                     <td class="id-body"><span class="hash">#</span><b>${book.id}</b></td>
                     <td class="title-body">${book.name}</td>
-                    <td class="price-body">$${book.price}</td>
-                    <td class="read-body btn"> <button onclick="onReadBook('${book.id}')">Read</button></td>
-                    <td class="update-body btn"> <button onclick="onUpdateBook('${book.id}')">Update</button></td>
-                    <td class="delete-body btn"> <button onclick="onRemoveBook('${book.id}')">Delete</button></td>
+                    <td class="price-body">${price}</td>
+                    <td class="read-body btn"> <button data-trans="read" onclick="onReadBook('${book.id}')">Read</button></td>
+                    <td class="update-body btn"> <button data-trans="update" onclick="onUpdateBook('${book.id}')">Update</button></td>
+                    <td class="delete-body btn"> <button data-trans="delete" onclick="onRemoveBook('${book.id}')">Delete</button></td>
                 </tr>`
     })
     document.querySelector('tbody').innerHTML = strHtmls.join('')
@@ -43,6 +45,14 @@ function renderBookInfo(bookId) {
 function onAddBook() {
     addBook()
     renderBooks()
+
+}
+
+function onSetLang(lang) {
+    setLang(lang);
+    // TODO: if lang is hebrew add RTL class to document.body
+    renderBooks();
+    doTrans();
 }
 
 function onReadBook(bookId) {
@@ -80,4 +90,26 @@ function onchangeBookRating(bookId, diff) {
 function onNextPage(diff) {
     movePage(diff);
     renderBooks();
+}
+
+
+function renderPageNum() {
+    var elPages = document.querySelector('.pages-btns');
+    var pageCount = (gBooks.length - 1) / PAGE_SIZE;
+    var strHtml = '';
+    for (var i = 0; i <= pageCount; i++) {
+        strHtml += `<button onclick="moveToPage(${i})" >${i + 1}</button>`
+    }
+    elPages.innerHTML = strHtml
+}
+
+function darkMode(btn) {
+    var elBody = document.body
+    var icon = document.getElementById('icon')
+    elBody.classList.toggle('dark-theme');
+    if (elBody.classList.contains('dark-theme')) {
+        icon.src = "img/icon-sun.svg"
+    } else {
+        icon.src = "img/icon-moon.svg"
+    }
 }

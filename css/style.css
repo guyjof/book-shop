@@ -1,8 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700&display=swap");
+@import url(rtl.css);
+
+:root {
+  --white: #fff;
+  --primary-color: #f8f8fb;
+  --font-color: rgb(12, 14, 22);
+}
+
+.dark-theme {
+  --white: rgb(30, 33, 57);
+  --primary-color: rgb(20, 22, 37);
+  --font-color: #f5f5f5;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Spartan", sans-serif;
 }
+
 /* 
 purple #7c5dfa
 # color rgb(126, 136, 195)
@@ -10,7 +25,7 @@ black rgb(12, 14, 22)
 */
 
 body {
-  background-color: #f8f8fb;
+  background-color: var(--primary-color);
   margin: 0;
 }
 
@@ -20,7 +35,7 @@ header {
 }
 
 h1 {
-  color: rgb(12, 14, 22);
+  color: var(--font-color);
   letter-spacing: -1px;
   margin: 0;
   margin-bottom: 70px;
@@ -41,6 +56,13 @@ main {
   align-items: flex-start;
 }
 
+.title {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
 span.hash {
   color: rgb(126, 136, 195);
 }
@@ -52,7 +74,7 @@ nav {
   top: 20vh;
   flex-grow: 1;
   padding: 0 30px;
-  background-color: #fff;
+  background-color: var(--primary-color);
   border-radius: 10px;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
   transition: 0.7s;
@@ -61,6 +83,22 @@ nav {
 nav.open {
   right: 10px;
   opacity: 1;
+}
+
+.lang-select {
+  padding: 0.4em;
+  font-size: 14px;
+  appearance: none;
+  margin-inline-start: 20px;
+  border: 0.2px solid rgb(126, 136, 195);
+  background-color: var(--white);
+  color: var(--font-color);
+  border-radius: 20px;
+  cursor: pointer;
+}
+.lang-select:focus,
+.lang-select:active {
+  outline-style: none;
 }
 
 .info-header {
@@ -104,13 +142,13 @@ thead {
 
 td {
   padding: 20px 30px;
-  background-color: #fff;
-  border-bottom: 1rem solid #f8f8fb;
-  color: rgb(12, 14, 22);
+  background-color: var(--white);
+  border-bottom: 1rem solid var(--primary-color);
+  color: var(--font-color);
 }
 
 td:last-child {
-  padding-right: 30px;
+  padding-inline-end: 30px;
 }
 
 td.title-head,
@@ -159,7 +197,7 @@ a.add-book {
   margin-bottom: 20px;
   font-size: 16px;
   font-weight: 500;
-  margin-left: 5px;
+  margin-inline-start: 5px;
 }
 
 .pages {
@@ -171,4 +209,16 @@ a.add-book {
 }
 .pages button {
   margin-right: 10px;
+  background-color: var(--white);
+  font-size: 1rem;
+  font-weight: 400;
+  border: 0.2px solid rgb(126, 136, 195);
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: var(--white);
+  color: var(--font-color);
+}
+
+#icon {
+  cursor: pointer;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
@@ -16,35 +16,48 @@
         <div class="main-content">
 
             <div class="title">
-                <h1>Aviv's Book Shop</h1>
+                <div>
+                    <h1 data-trans="header">Aviv's Book Shop</h1>
+                </div>
+                <div>
+                    <img id="icon" onclick="darkMode(this)" src="img/icon-moon.svg">
+                </div>
+
             </div>
             <div class="add-book">
-                <a class="add-book" onclick="onAddBook()">Create new book</a>
+                <a class="add-book" data-trans="create" onclick="onAddBook()">Create new book</a>
+                <select class="lang-select" onchange="onSetLang(this.value)">
+                    <option data-trans="select" selected disabled>Language</option>
+                    <option value="en">English</option>
+                    <option value="es">Espanol</option>
+                    <option value="he">עברית</option>
+                    <option value="ch">Chinese</option>
+                </select>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <td class="id-head"><span class="hash">#</span><b>ID</b></td>
-                        <td onclick="onSetSort()" class="title-head"><b>Title</b></td>
-                        <td onclick="onSetSort()" class="price-head"><b>Price</b></td>
-                        <td class="actions-head" colspan="3"><b>Actions</b></td>
+                        <td class="id-head"><span class="hash" scope="col">#</span><b data-trans="id">ID</b></td>
+                        <td onclick="onSetSort()" class="title-head" scope="col"><b data-trans="title">Title</b></td>
+                        <td onclick="onSetSort()" class="price-head" scope="col"><b data-trans="price">Price</b></td>
+                        <td class="actions-head" colspan="3"><b data-trans="actions">Actions</b></td>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
         </div>
-        <nav>
-        </nav>
+        <nav></nav>
     </main>
     <div class="pages">
         <button onclick="onNextPage('-1')">&lt;&lt;</button>
-        <div class="pages-"></div>btns
+        <div class="pages-btns"></div>
         <button onclick="onNextPage('1')">&gt;&gt;</button>
     </div>
     <footer></footer>
 
     <script src="js/services/storage-service.js"></script>
+    <script src="js/services/i18n-service.js"></script>
     <script src="js/services/util-service.js"></script>
     <script src="js/services/book-service.js"></script>
     <script src="js/book-controller.js"></script>

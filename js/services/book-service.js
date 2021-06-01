@@ -2,11 +2,15 @@
 const KEY = 'books';
 const PAGE_SIZE = 8;
 var gPageIdx = 0;
+var gBooks;
 
-var gBooks = []
 var gBookNames = ['Clean Code', 'Think Like A Programer', 'Practical C Programing', 'iOS Programing'];
 
 _createBooks()
+
+function getPage() {
+    return gPageIdx + 1;
+}
 
 function _createBook(name, price = getRandomIntInclusive(19, 100)) {
     return {
@@ -40,11 +44,6 @@ function addBook() {
     _saveBooksToStorage();
 }
 
-function readBook(bookId) {
-
-
-}
-
 function updateBook(bookId, newPrice) {
     var book = gBooks.find(book => {
         return book.id === bookId
@@ -64,10 +63,15 @@ function removeBook(bookId) {
 
 function movePage(diff) {
     diff = +diff
-    console.log(gPageIdx);
     if (gPageIdx * PAGE_SIZE === 0 && diff === -1) return
     gPageIdx += diff;
     if (gPageIdx * PAGE_SIZE >= gBooks.length) return gPageIdx--
+}
+
+
+function moveToPage(idx) {
+    gPageIdx = idx;
+    renderBooks()
 }
 
 function changeBookRating(bookId, diff) {
@@ -75,9 +79,6 @@ function changeBookRating(bookId, diff) {
     if (book.rate + diff > 10 || book.rate + diff <= 0) return;
     book.rate += diff;
 }
-
-
-
 
 function getBooks() {
     var books = gBooks
